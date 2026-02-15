@@ -31,6 +31,17 @@ public class Main {
             maxHeapify(arr, heapSize, largest);
         }
     }
+    // Builds the max heap from the array.
+   // We start from the last non-leaf node and move up to the root.
+static void buildMaxHeap(WordFreq[] arr) {
+
+    int heapSize = arr.length;
+
+    // Go backwards and fix each subtree
+    for (int i = heapSize / 2 - 1; i >= 0; i--) {
+        maxHeapify(arr, heapSize, i);
+    }
+}
 
     public static void main(String[] args) {
 
@@ -50,7 +61,12 @@ public class Main {
 
         System.out.println("Original array order:");
         printArray(arr);
+        buildMaxHeap(arr);
 
-        // Next step: build the max heap
+        System.out.println("\nHeapified array order:");
+        printArray(arr);
+
+
+        
     }
 }
