@@ -6,6 +6,31 @@ public class Main {
             System.out.println(i + ": " + arr[i]);
         }
     }
+    // Fixes the heap at index i.
+    // If a child has a larger frequency than the parent, swap and continue.
+    static void maxHeapify(WordFreq[] arr, int heapSize, int i) {
+
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        int largest = i;
+
+        if (left < heapSize && arr[left].frequency > arr[largest].frequency) {
+            largest = left;
+        }
+
+        if (right < heapSize && arr[right].frequency > arr[largest].frequency) {
+            largest = right;
+        }
+
+        if (largest != i) {
+            WordFreq temp = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = temp;
+
+            maxHeapify(arr, heapSize, largest);
+        }
+    }
 
     public static void main(String[] args) {
 
